@@ -1,6 +1,8 @@
 # Base image
 FROM python:3.11-alpine
 
+ENV FLASK_APP=lambda_function.py
+
 # Set working directory
 WORKDIR /app
 

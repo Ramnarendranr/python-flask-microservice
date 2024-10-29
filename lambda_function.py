@@ -11,8 +11,8 @@ def generate_random_color():
 @app.route('/random-color', methods=['GET'])
 def random_color():
     # Return the generated random color as a JSON response
-    color = generate_random_color()
-    return jsonify({"color": color})
+    #color = generate_random_color()
+    return jsonify({"color": "0xFFFFFF"})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001)
