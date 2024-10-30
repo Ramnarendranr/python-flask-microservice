@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 import random
+import awsgi
 
 app = Flask(__name__)
 
@@ -11,8 +12,10 @@ def generate_random_color():
 @app.route('/random-color', methods=['GET'])
 def random_color():
     # Return the generated random color as a JSON response
-    #color = generate_random_color()
-    return jsonify({"color": "0xFFFFFF"})
+    color = generate_random_color()
+    return jsonify({"color": color})
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001)
+# AWS Lambda handler
+def lambda_handler(event, context):
+    # Use awsgi to handle the Lambda event and send it to the Flask app
+    return awsgi.response(app, event, context)
